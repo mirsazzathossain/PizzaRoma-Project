@@ -1,0 +1,394 @@
+{% extends "app/main.html" %}
+{% load static %}
+{% block content %}
+    <!-- Banner Start -->
+    <div class="banner banner-1 bg-cover">
+
+        <div class="imgs-wrapper">
+            <img src="{% static 'images/11.png' %}" alt="veg" class="d-none d-lg-block">
+        </div>
+
+        <div class="banner-slider">
+            {% for banner in banners %}
+                <div class="banner-item">
+                    <div class="banner-inner">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-xl-6 col-lg-6">
+                                    <h1 class="title">{{ banner.title }}</h1>
+                                    <h4>{{ banner.subtitle }}</h4>
+                                    <p class="subtitle">
+                                        {{ banner.description }}
+                                    </p>
+                                    <div class="banner-icons-wrapper">
+                                        <div class="banner-icon">
+                                            <i class="flaticon-calories"></i>
+                                            <div class="banner-icon-body">
+                                                <h5>{{ banner.pizza.totalCalories|floatformat:"0" }}</h5>
+                                                <span>Calories</span>
+                                            </div>
+                                        </div>
+                                        <div class="banner-icon">
+                                            <i class="flaticon-cheese"></i>
+                                            <div class="banner-icon-body">
+                                                <h5>
+                                                    {{ banner.pizza.cheese.quantity|floatformat:"0" }}g
+                                                </h5>
+                                                <span>{{ banner.pizza.cheese.name }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="banner-controls">
+                                        <a href="#" class="btn-custom primary">Order <i class="flaticon-shopping-bag"></i> </a>
+                                        <h4>৳ {% if banner.offer %}{{ banner.discountPrice|floatformat:"1" }}{% else %}{{ banner.pizza.price|floatformat:"1" }}{% endif %}</h4>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6">
+                                    <img src="{{ banner.pizza.imageURL }}" alt="pizza">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="banner-slider-nav">
+            <div class="container">
+
+                <!-- Arrow -->
+                <i class="slider-prev fas fa-arrow-left slick-arrow"></i>
+
+                <div class="banner-slider-nav-inner">
+
+                    {% for banner in banners %}
+                        <div class="banner-nav-item">
+                            <div class="banner-nav-item-inner {% if banner.offer %}on-sale{% endif %}">
+                                {% if banner.offer %}
+                                    <div class="sale">
+                                        <div class="sale-inner">
+                                            {{ banner.offer.tag }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <img src="{{ banner.pizza.imageURL }}" alt="pizza">
+                                <div class="banner-nav-item-body">
+                                    <h5>{{ banner.pizza.name }}</h5>
+                                    <span>৳ {{ banner.pizza.price|floatformat:"1" }}</span>
+                                    {% if banner.offer %}
+                                        <span>৳ {{ banner.discountPrice|floatformat:"1" }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <!-- Arrow -->
+                <i class="slider-next fas fa-arrow-right slick-arrow"></i>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Banner End -->
+
+    <!-- About us start -->
+    <div class="section" id="about-us">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6 mb-lg-30 ct-single-img-wrapper">
+                    <img src="{% static 'images/auth.jpg' %}" alt="img">
+                    <div class="ct-dots"></div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-title-wrap mr-lg-30">
+                        <h5 class="custom-primary">Pizza Roma</h5>
+                        <h2 class="title">Serving Authentic Italian Pizza</h2>
+                        <p class="subtitle">
+                            Pizza Roma is a family owned and operated business. We endeavour to bring to Dhaka the type of pizza you get on any street corner in Rome.
+                        </p>
+                        <p class="subtitle">
+                            Roman pizza has a thin, crisp crust and is bursting with flavor. It is cooked for just a few minutes in a very, very hot oven. We work with importers and leading suppliers of produce to ensure that our customers get the best pizza in town.
+                        </p>
+                        <p class="subtitle">
+                            While we are a classic pizzeria catering to the Italian community, we also serve a wide range of tastes, both international and domestic. All our pizzas are 100% Halal and (in our humble opinion) delicious!
+                        </p>
+                        <a href="menu-v1.html" class="btn-custom">Check our Menu</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- About us End -->
+
+    <!-- Infographics Start -->
+    <div class="section section-padding bg-cover bg-center bg-parallax dark-overlay dark-overlay-2" style="background-image: url('static/images/subheader-2.jpg')">
+        <div class="container">
+            <div class="section-title-wrap section-header text-center">
+                <h2 class="title text-white">Our success Story</h2>
+                <p class="subtitle text-white">
+                    We endeavour to bring to Dhaka the type of pizza you get on any street corner in Rome. And here we go, the stats says it all. Long way to go happy to have you with us.
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="ct-infographic-item">
+                        <i class="flaticon-employee"></i>
+                        <h4>24,934</h4>
+                        <p>Happy Customers</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="ct-infographic-item">
+                        <i class="flaticon-pizza-slice"></i>
+                        <h4>65,317</h4>
+                        <p>Pizzas Made</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="ct-infographic-item">
+                        <i class="flaticon-cheese"></i>
+                        <h4>4,658</h4>
+                        <p>Cheese Rolls</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="ct-infographic-item">
+                        <i class="flaticon-soda"></i>
+                        <h4>67,335</h4>
+                        <p>Drinks Served</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Infographics End -->
+
+    <!-- Menu Start -->
+    <div class="section section-padding pt-5" id="menu">
+        <div class="container">
+
+            <div class="section-title-wrap section-header text-center">
+                <h5 class="custom-primary">Pizza Menu</h5>
+                <h2 class="title">Explore Our Menu</h2>
+                <p class="subtitle">
+                    Varieties of Italian pizza's are available in our restaurant. Explore all of them from our menu and choose perfect one for you.
+                </p>
+            </div>
+
+            <div class="row">
+                {% for pizza in pizzas|slice:":6" %}
+                <div class="col-lg-6">
+                    <a class="d-flex" href="#">
+                        <div class="mr-3 ct-mini-menu-thumb flex-shrink-0">   
+                            <img src="{{ pizza.imageURL }}" alt="pizza">                   
+                        </div>
+                        <div class="ct-mini-menu-item">
+                            <div class="ct-mini-menu-top">
+                                <h5>{{ pizza.name }}</h5>
+                                <div class="ct-mini-menu-dots"></div>
+                                <span class="custom-primary">{{ pizza.price|floatformat:"2" }} ৳</span>
+                            </div>
+                            <div class="ct-mini-menu-bottom">
+                                <p>
+                                    {{ pizza.description }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="section-btn">
+                <a href="#" class="btn-custom">See More</a>
+            </div>
+        </div>
+    </div>
+    <!-- Menu End -->
+
+    <!-- Products Start -->
+    <div class="section products-section">
+        <div class="container">
+
+            <div class="section-title-wrap section-header text-center">
+                <h5 class="custom-primary">Trending</h5>
+                <h2 class="title">Our Customers' Top Picks</h2>
+                <p class="subtitle">
+                    Though all of our pizzas are special to us and one of the best in Dhaka. But following are the fevourite to our customers.
+                </p>
+            </div>
+
+            <div class="product-slider">
+
+                {% for pizza in pizzas|slice:":4" %}
+
+                <!-- Product Start -->
+                <div class="product">
+                    <a class="product-thumb" href="#"> <img src="{{ pizza.imageURL }}" alt="menu item" /> </a>
+                    <div class="product-body">
+                        <div class="product-desc">
+                            <h4> <a href="#">{{ pizza.name }}</a> </h4>
+                            <p class="text-truncate text-truncate--2">
+                                {{ pizza.description }}
+                            </p>
+                            <p class="product-price">12.99$</p>
+                            <div class="favorite">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-controls">
+                            <a href="#" class="order-item btn-custom btn-sm shadow-none">Order <i class="fas fa-shopping-cart"></i> </a>
+                            <a href="#" class="btn-custom secondary btn-sm shadow-none" data-toggle="modal" data-target="#"> Customize <i class="fas fa-plus"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product End -->
+                {% endfor %}
+
+            </div>
+
+            <div class="ct-arrows centered-arrows">
+                <i class="slider-prev fas fa-arrow-left slick-arrow"></i>
+                <i class="slider-next fas fa-arrow-right slick-arrow"></i>
+            </div>
+
+        </div>
+    </div>
+    <!-- Products End -->
+
+    <!-- Catering -->
+    <div id="reservation" class="section section-padding bg-cover bg-center bg-parallax dark-overlay dark-overlay-2" style="background-image: url('static/images/cta-2.jpg')">
+        <div class="container">
+            <div class="section-title-wrap section-header text-center">
+                <h2 class="title text-white">Fancy a Pizza Party?</h2>
+                <p class="subtitle text-white" style="max-width: 800px;">
+                    <small>
+                        Pizza Roma is available for catering events large and small. We can prepare large advance orders in our pizzeria and deliver to you at a specific time, make specialized orders, as well as provide our signature ‘Live Pizza’ show at your venue.
+                    </small>
+                    <br>
+                    <small>
+                        Add some flare to your next event with Pizza Roma catering!
+                    </small>
+                    ​<br>
+                    <small>
+                        <b>PRE-ORDERS:</b> call us in advance to arrange delivery of large orders at specific times!
+                    </small>
+                    <br>
+                    <small>
+                        <b>CUSTOMISED ORDERS:</b> Something special in mind? We can accommodate a wide variety of requests! Ask about our pizza canapés!
+                    <small>
+                    <br>
+                    </small>
+                        <b>LIVE PIZZA:</b> Pizza Roma prepared live, at your event. Watch out for spinning pizzas!
+                    </small>
+                </p>
+            </div>
+
+            <div class="section-btn">
+                <a href="#" class="btn-custom">Contact Us</a>
+            </div>
+            
+        </div>
+    </div>
+    <!-- End Catering -->
+
+    <!-- Icons Start -->
+    <div class="section pt-5">
+        <div class="container">
+            <div class="section-title-wrap section-header text-center">
+                <h5 class="custom-primary">How We Do It</h5>
+                <h2 class="title">We Deliver Your Food In 4 Steps</h2>
+                <p class="subtitle">
+                    Craving For Pizza? Grab your phone and order your favourite one from us. We'll be delighted to confirm your order in real-time.
+                </p>
+            </div>
+
+            <div class="row infographics-2">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="ct-infographic-item">
+                        <i class="flaticon-online-booking"></i>
+                        <h4>Order</h4>
+                        <p>
+                            Order your fevourite pizza from our website or mobile app.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="ct-infographic-item">
+                        <i class="flaticon-calories"></i>
+                        <h4>Cook</h4>
+                        <p>
+                            Our professional cooks are always ready to serve your need.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="ct-infographic-item">
+                        <i class="flaticon-delivery-man"></i>
+                        <h4>Deliver</h4>
+                        <p>
+                            Only 30 min and our deliver man will be on your doorstep.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="ct-infographic-item">
+                        <i class="flaticon-food-tray"></i>
+                        <h4>Enjoy</h4>
+                        <p>
+                            Lastly, it is time to unpack your food. Enjoy your pizza!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-btn">
+                <a href="#" class="btn-custom">Order Online</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- Icons End -->
+
+    <!-- Instagram Start -->
+    <div class="section pt-0">
+        <div class="container">
+
+            <div class="section-title-wrap section-header text-center">
+                <h5 class="custom-primary">Instagram</h5>
+                <h2 class="title">We Love Sharing What We Do</h2>
+                <p class="subtitle">
+                    In our pizzagram page we keep sharing every meoments with you. Follow us on our Instagram page and enjoy beautiful moments with us.
+                </p>
+            </div>
+
+            <div class="row">
+                {% for post in insta_posts|slice:':6' %}
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                        <a target="_blank" href="{{ post.url }}" class="ct-ig-item ig-2">
+                            <img src="{{ post.imageURL }}" alt="ig">
+                        </a>
+                    </div>
+                {% endfor %}               
+            </div>
+
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+    <!-- Map Start -->
+    <div class="section-map pb-0">
+        <div class="ct-contact-map-wrapper">
+            <div id="contactPageMap" class="ct-contact-map"></div>
+        </div>
+    </div>
+    <!-- Map End -->
+    
+{% endblock content %}

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Roma</title>
+
+    <!-- Vendor Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/plugins/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/slick-theme.css' %}">
+
+    <!-- Icon Fonts -->
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/all.min.css' %}">
+
+    <!-- Map Style -->
+    <link rel="stylesheet" href="{% static 'css/plugins/leaflet.css' %}">
+
+    <!-- Custom Style sheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader">
+		<label>Loading...</label>
+	</div>
+    <!-- Preloader End -->
+
+    <!-- Aside (Mobile Navigation) -->
+    <aside class="main-aside">
+        <a class="navbar-brand" href="{% url 'home' %}"> Pizza Roma </a>
+
+        <div class="aside-scroll">
+            <ul>
+                <li class="menu-item">
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#about-us">Our Story</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">Shop</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#menu">Menu</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#reservation">Reservation</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">Contact Us</a>
+                </li>
+            </ul>
+
+        </div>
+  </aside>
+  <div class="aside-overlay aside-trigger"></div>
+
+  <!-- Header Start -->
+  <header class="main-header header-1">
+
+        <div class="top-header">
+            <div class="container">
+                <div class="top-header-inner">
+
+                    <div class="top-header-contacts">
+                        <ul class="top-header-nav">
+                            <li> 
+                                <a class="p-0" href="tel:+8809678660039"><i class="fas fa-phone mr-2"></i> +880 9678 660039</a> 
+                            </li>
+                        </ul>
+                    </div>
+
+                    <ul class="top-header-nav header-cta">
+                        <li> <a href="#">Order Online</a> </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <a class="navbar-brand" href="{% url 'home' %}"> Pizza Roma </a>
+                <!-- Menu -->
+                <ul class="navbar-nav">
+                    <li class="menu-item">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#about-us">Our Story</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">Shop</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#menu">Menu</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#reservation">Reservation</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+
+                <div class="header-controls">
+                    <ul class="header-controls-inner">
+                        <li class="cart-dropdown-wrapper cart-trigger">
+                            <span class="cart-item-count">0</span>
+                            <i class="flaticon-shopping-bag"></i>
+                        </li>
+                    </ul>
+                    <!-- Toggler -->
+                    <div class="aside-toggler aside-trigger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+
+    </header>
+    <!-- Header End -->
+    
+    <!-- Body Start -->
+    <div>
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+    <!-- Body End -->
+
+    <!-- Footer Start -->
+    <footer class="ct-footer footer-dark">
+        <!-- Top Footer -->
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="{% static 'images/logo-light.png' %}" alt="logo" style="height: 100px;">
+                </div>
+                <div class="footer-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.foodbooking.pizzaromabd&hl=en" target="_blank"> <img src="{% static 'images/android.png' %}" alt="download it on the app store"></a>
+                    <a href="https://apps.apple.com/us/app/pizzaromabd/id1477041553" target="_blank"> <img src="{% static 'images/ios.png' %}" alt="download it on the app store"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Footer -->
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
+                    <h5 class="widget-title">Information</h5>
+                    <ul>
+                        <li> <a href="{% url 'home' %}">Home</a> </li>
+                        <li> <a href="#">Shop</a> </li>
+                        <li> <a href="#about-us">About Us</a> </li>
+                        <li> <a href="#menu">Menu</a> </li>
+                        <li> <a href="#">Contact Us</a> </li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
+                    <h5 class="widget-title">Opening Hours</h5>
+                    <ul>
+                        <li>Sat - Sun :  <span>11.59 am - 09.59 pm</span></li>
+                        <li>Mon - Tue :  <span>11.59 am - 09.59 pm</span></li>
+                        <li>Wed - Thu :  <span>11.59 am - 09.59 pm</span></li>
+                        <li>Friday :  <span>11.59 am - 09.59 pm</span></li>
+                        <li>Open :  <span class="footer-close">Everyday</span></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
+                    <h5 class="widget-title">Categories</h5>
+                    <ul>
+                        <li> <a href="#">Roma Classic</a> </li>
+                        <li> <a href="#">Roma Deshi</a> </li>
+                        <li> <a href="#">Roma Lite & Premio</a> </li>
+                        <li> <a href="#">Roma Premio</a> </li>
+                        <li> <a href="#">Specials!</a> </li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 footer-widget">
+                    <h5 class="widget-title">Social Media</h5>
+                    <ul class="social-media-fao">
+                        <li> <a target="_blank" href="https://www.facebook.com/PizzaRomaBD/" class="facebook"> <i class="fab fa-facebook-f"></i> </a> </li>
+                        <li> <a target="_blank" href="https://instagram.com/pizzaromabd" class="instagram"> <i class="fab fa-instagram"></i></a> </li>
+                        <li> <a target="_blank" href="https://www.tripadvisor.com/Restaurant_Review-g293936-d6171440-Reviews-Pizza_Roma-Dhaka_City_Dhaka_Division.html" class="tripadvisor"> <i class="fab fa-tripadvisor"></i> </a> </li>
+                        <li> <a target="_blank" href="https://www.linkedin.com/showcase/pizza-roma-bd" class="linkedin"> <i class="fab fa-linkedin-in"></i> </a> </li>
+                    </ul>
+                    <div class="footer-offer">
+                        <p>Signup and get exclusive offers and coupon codes</p>
+                        <a href="#" class="btn-custom btn-sm shadow-none">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <ul>
+                    <li> <a href="{% url 'privacy' %}">Privacy Policy</a> </li>
+                    <li> <a href="{% url 'refund' %}">Refund Policy</a> </li>
+                    <li> <a href="{% url 'cookie' %}">Cookie Policy</a> </li>
+                    <li> <a href="{% url 'terms' %}">Terms & Conditions</a> </li>
+                </ul>
+                <div class="footer-copyright">
+                    <p> Copyright &copy; {% now 'Y' %} <a href="{% url 'home' %}" style="">Pizza Roma</a> All Rights Reserved. </p>
+                    <a href="#" class="back-to-top">Back to top <i class="fas fa-chevron-up"></i> </a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Vendor Scripts -->
+    <script src="{% static 'js/plugins/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/plugins/popper.min.js' %}"></script>
+    <script src="{% static 'js/plugins/waypoint.js' %}"></script>
+    <script src="{% static 'js/plugins/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.slimScroll.min.js' %}"></script>
+    <script src="{% static 'js/plugins/imagesloaded.min.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.steps.min.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/plugins/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/plugins/slick.min.js' %}"></script>
+
+    <!-- Custom Scripts -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Map -->
+    <script src="{% static 'js/plugins/leaflet.js' %}"></script>
+    <script src="{% static 'js/map.js' %}"></script>
+</body>
+</html>
