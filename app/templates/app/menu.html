@@ -1,0 +1,66 @@
+{% extends "app/main.html" %}
+{% load static %}
+{% block content %}
+ <!-- Menu Categories Start -->
+  <div class="ct-menu-categories menu-filter">
+    <div class="container">
+      <div class="menu-category-slider">
+        <a href="#" data-filter="*" class="ct-menu-category-item active">
+          <div class="menu-category-thumb">
+            <img src="{% static 'images/1.png' %}" alt="category">
+          </div>
+          <div class="menu-category-desc">
+            <h6>All</h6>
+          </div>
+        </a>
+        {% for category in categories %}
+            <a href="#" data-filter=".{{category.id}}" class="ct-menu-category-item">
+                <div class="menu-category-thumb">
+                    <img src="{{category.imageURL}}" alt="category">
+                </div>
+                <div class="menu-category-desc">
+                    <h6>{{category.name}}</h6>
+                </div>
+            </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- Menu Categories End -->
+
+    <!-- Menu Wrapper Start -->
+    <div class="section section-padding">
+        <div class="container">
+
+            <div class="menu-container row">
+
+                {% for pizza in pizzas %}
+                <!-- Product Start -->
+                <div class="col-lg-4 col-md-6 {{pizza.category_id}}">
+                    <div class="product">
+                        <a class="product-thumb" href="/pizza/{{pizza.id}}"> <img src="{{pizza.imageURL}}" alt="menu item" /> </a>
+                        <div class="product-body">
+                            <div class="product-desc">
+                                <h4> <a href="/pizza/{{pizza.id}}">{{pizza.name}}</a> </h4>
+                                <p>{{pizza.description}}</p>
+                                <p class="product-price">{{pizza.price}}$</p>
+                                <div data-pizza={{pizza.id}} data-action="add" class="favorite update-cart" title="Add to cart">
+                                    <i class="flaticon-shopping-bag"></i>
+                                </div>
+                            </div>
+                            <div class="product-controls">
+                                <a href="#" class="order-item btn-custom btn-sm shadow-none">Order <i class="fas fa-shopping-cart"></i> </a>
+                                <a href="/pizza/{{pizza.id}}" class="btn-custom secondary btn-sm shadow-none"> Customize <i class="fas fa-plus"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product End -->
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Menu Wrapper End -->
+{% endblock %}

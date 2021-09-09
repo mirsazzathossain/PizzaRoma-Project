@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                     <div class="banner-controls">
-                                        <a href="#" class="btn-custom primary">Order <i class="flaticon-shopping-bag"></i> </a>
+                                        <a href="{% url 'cart' %}" data-pizza={{banner.pizza.id}} data-action="add" class="update-cart btn-custom primary">Order <i class="flaticon-shopping-bag"></i> </a>
                                         <h4>৳ {% if banner.offer %}{{ banner.discountPrice|floatformat:"1" }}{% else %}{{ banner.pizza.price|floatformat:"1" }}{% endif %}</h4>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                         <p class="subtitle">
                             While we are a classic pizzeria catering to the Italian community, we also serve a wide range of tastes, both international and domestic. All our pizzas are 100% Halal and (in our humble opinion) delicious!
                         </p>
-                        <a href="menu-v1.html" class="btn-custom">Check our Menu</a>
+                        <a href="{% url 'menu' %}" class="btn-custom">Check our Menu</a>
                     </div>
                 </div>
 
@@ -186,7 +186,7 @@
             <div class="row">
                 {% for pizza in pizzas|slice:":6" %}
                 <div class="col-lg-6">
-                    <a class="d-flex" href="#">
+                    <a class="d-flex" href="/pizza/{{ pizza.id }}">
                         <div class="mr-3 ct-mini-menu-thumb flex-shrink-0">   
                             <img src="{{ pizza.imageURL }}" alt="pizza">                   
                         </div>
@@ -207,7 +207,7 @@
                 {% endfor %}
             </div>
             <div class="section-btn">
-                <a href="#" class="btn-custom">See More</a>
+                <a href="{% url 'menu' %}" class="btn-custom">See More</a>
             </div>
         </div>
     </div>
@@ -231,21 +231,21 @@
 
                 <!-- Product Start -->
                 <div class="product">
-                    <a class="product-thumb" href="#"> <img src="{{ pizza.imageURL }}" alt="menu item" /> </a>
+                    <a class="product-thumb" href="/pizza/{{pizza.id}}"> <img src="{{ pizza.imageURL }}" alt="menu item" /> </a>
                     <div class="product-body">
                         <div class="product-desc">
-                            <h4> <a href="#">{{ pizza.name }}</a> </h4>
+                            <h4> <a href="/pizza/{{pizza.id}}">{{ pizza.name }}</a> </h4>
                             <p class="text-truncate text-truncate--2">
                                 {{ pizza.description }}
                             </p>
-                            <p class="product-price">12.99$</p>
-                            <div class="favorite">
-                                <i class="far fa-heart"></i>
+                            <p class="product-price">{{pizza.price}}$</p>
+                            <div data-pizza={{pizza.id}} data-action="add" class="favorite update-cart" title="Add to cart">
+                                <i class="flaticon-shopping-bag"></i>
                             </div>
                         </div>
                         <div class="product-controls">
-                            <a href="#" class="order-item btn-custom btn-sm shadow-none">Order <i class="fas fa-shopping-cart"></i> </a>
-                            <a href="#" class="btn-custom secondary btn-sm shadow-none" data-toggle="modal" data-target="#"> Customize <i class="fas fa-plus"></i> </a>
+                            <a href="{% url 'cart' %}" data-pizza={{pizza.id}} data-action="add" class="update-cart order-item btn-custom btn-sm shadow-none">Order <i class="fas fa-shopping-cart"></i> </a>
+                            <a href="/pizza/{{pizza.id}}" class="btn-custom secondary btn-sm shadow-none" > Customize <i class="fas fa-plus"></i> </a>
                         </div>
                     </div>
                 </div>
@@ -292,7 +292,7 @@
             </div>
 
             <div class="section-btn">
-                <a href="#" class="btn-custom">Contact Us</a>
+                <a href="/#map" class="btn-custom">Contact Us</a>
             </div>
             
         </div>
@@ -350,7 +350,7 @@
             </div>
 
             <div class="section-btn">
-                <a href="#" class="btn-custom">Order Online</a>
+                <a href="{% url 'menu' %}" class="btn-custom">Order Online</a>
             </div>
 
         </div>
@@ -384,7 +384,7 @@
     <!-- Instagram End -->
 
     <!-- Map Start -->
-    <div class="section-map pb-0">
+    <div class="section-map pb-0" id='map'>
         <div class="ct-contact-map-wrapper">
             <div id="contactPageMap" class="ct-contact-map"></div>
         </div>

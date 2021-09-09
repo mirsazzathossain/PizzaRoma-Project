@@ -1,0 +1,114 @@
+{% extends "app/main.html" %}
+{% load static %}
+{% load app_extras %}
+{% block content %} 
+   
+
+    <div class="section product-single">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-5">
+
+                    <!-- Main Thumb -->
+                    <div class="product-thumb">
+                        <img src="{{pizza.imageURL}}" alt="pizza">
+                    </div>
+                    <!-- /Main Thumb -->
+
+                </div>
+                <div class="col-md-7">
+                    <div class="product-content">
+
+                        <!-- Product Title -->
+                        <h2 class="title">{{pizza.name}}</h2>
+                        <!-- /Product Title -->
+
+                        <!-- Price -->
+                        <div class="price-wrapper">
+                            <p class="product-price">{{pizza.price}}$</p>
+                        </div>
+                        <!-- /Price -->
+
+                        <!-- Product Short Description -->
+                        <p>{{pizza.description}}</p>
+                        <!-- /Product Short Description -->
+
+                        <!-- Add To Cart Form -->
+                        
+                        <a data-pizza={{pizza.id}} data-action="add" class="btn-custom secondary update-cart" href="{% url 'cart' %}"> Order <i class="fas fa-shopping-cart"></i> </a>
+                        <!-- /Add To Cart Form -->
+
+                <!-- Product Meta -->
+                <ul class="product-meta">
+                    <li>
+                    <span>Categories: </span>
+                    <div class="product-meta-item">
+                        <a href="#">{{pizza.category}}</a>
+                    </div>
+                    </li>
+                    <li>
+                    <span>Tags: </span>
+                    <div class="product-meta-item">
+                        {% with pizza.name|split:" " as names %}
+                            {% for name in names %}
+                                <a href="#">{{name}}</a>,
+                            {% endfor %}
+                        {% endwith %}
+                        <a href="#">Italian</a>
+                    </div>
+                    </li>
+                    <li>
+                    <span>SKU: </span>
+                    <div class="product-meta-item">
+                        <span>N/A</span>
+                    </div>
+                    </li>
+                </ul>
+                <!-- /Product Meta -->
+
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+   
+
+    <!-- Related Start -->
+    <div class="section section-padding related-products pt-0">
+      <div class="container">
+          <h3>You might also like</h3>
+
+          <div class="row">
+
+            {% for pizza in pizzas|slice:":3" %}
+              <!-- Product Start -->
+              <div class="col-lg-4 col-md-6">
+                  <div class="product">
+                    <a class="product-thumb" href="/pizza/{{pizza.id}}"> <img src="{{pizza.imageURL}}" alt="menu item" /> </a>
+                    <div class="product-body">
+                        <div class="product-desc">
+                        <h4> <a href="/pizza/{{pizza.id}}">{{pizza.name}}</a> </h4>
+                        <p>{{pizza.description}}</p>
+                        <p class="product-price">{{pizza.price}}$</p>
+                        <div data-pizza={{pizza.id}} data-action="add" class="favorite update-cart" title="Add to cart">
+                            <i class="flaticon-shopping-bag"></i>
+                        </div>
+                        </div>
+                        <div class="product-controls">
+                          <a href="{% url 'cart' %}" data-pizza={{pizza.id}} data-action="add" class="update-cart order-item btn-custom btn-sm shadow-none">Order <i class="fas fa-shopping-cart"></i> </a>
+                          <a href="/pizza/{{pizza.id}}" class="btn-custom secondary btn-sm shadow-none" > Customize <i class="fas fa-plus"></i> </a>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <!-- Product End -->
+            {% endfor %}
+          </div>
+
+      </div>
+    </div>
+    <!-- Related End -->
+{% endblock %}

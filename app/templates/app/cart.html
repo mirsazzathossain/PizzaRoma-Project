@@ -1,0 +1,70 @@
+{% extends "app/main.html" %}
+{% load static %}
+{% load app_extras %}
+{% block content %}
+    <!--Cart Start -->
+    <section class="section">
+        <div class="container">
+
+        <!-- Cart Table Start -->
+        <table class="ct-responsive-table">
+            <thead>
+            <tr>
+                <th class="remove-item"></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Qunantity</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td class="remove">
+                        <button type="button" class="close-btn close-danger remove-from-cart" data-pizza={{ item.product.id }} data-action="delete">
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </td>
+                    <td data-title="Product">
+                        <div class="cart-product-wrapper">
+                            <img src="{{item.product.imageURL}}" alt="prod1">
+                            <div class="cart-product-body">
+                                <h6> <a href="/pizza/{{ item.product.id }}">{{item.product.name}}</a> </h6>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-title="Price"> <strong>{{item.product.price}}$</strong> </td>
+                    <td class="quantity" data-title="Quantity">
+                        <input data-pizza={{ item.product.id }} data-qty={{item.quantity}} data-price={{item.product.price}} type="number" min="1" class="qty form-control item-quantity" value="{{item.quantity}}" onkeydown="return false">
+                    </td>
+                    <td data-title="Total" class='total'> <strong class='bill-amount'>{{ item.quantity | multiply:item.product.price }}$</strong> </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <!-- Cart Table End -->
+
+        <!-- Cart form Start -->
+        <div class="row ct-cart-form">
+            <div class='col-lg-6'>
+                <h4>Cart Total</h4>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Total</th>
+                            <td id="total-bill"> <b>99.99$</b> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="{% url 'checkout' %}" class="btn-custom primary btn-block">Proceeed to Checkout</a>
+            </div>
+        </div>
+        <!-- Cart form End -->
+
+        </div>
+    </section>
+    <!-- Cart End -->
+
+{% endblock %}
